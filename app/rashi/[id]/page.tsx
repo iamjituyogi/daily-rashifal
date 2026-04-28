@@ -443,13 +443,19 @@ export default function RashiDetailPage() {
       </main>
 
       <footer className="mt-auto border-t border-slate-200/80 py-10" style={{ backgroundColor: COSMIC_BG }}>
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
           <Link href="/" className="rounded-lg bg-white/10 p-2 ring-1 ring-white/15">
             <Image src="/logo.png" alt="RashiNow" width={120} height={36} className="h-8 w-auto object-contain" />
           </Link>
-          <p className="text-slate-400 text-sm">
-            राशिनाउ © {new Date().getFullYear()}
-          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+            <Link href="/privacy-policy" className="text-slate-300 hover:text-white transition-colors">
+              गोपनीयता नीति
+            </Link>
+            <span className="hidden sm:inline text-slate-600">|</span>
+            <p className="text-slate-400">
+              राशिनाउ © {new Date().getFullYear()}
+            </p>
+          </div>
         </div>
       </footer>
     </div>

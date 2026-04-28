@@ -6,7 +6,9 @@ import Image from 'next/image';
 const PRIMARY = '#4A90E2';
 const PRIMARY_LIGHT = '#6BB6FF';
 
-/** Animated premium visual for hero — orbit rings + floating handset frame (no raster banner). */
+const SCREEN_IMG = '/app-home-screen.png';
+
+/** Animated premium visual — phone frame with real app home screenshot inside the display. */
 export default function AppLaunchHeroVisual() {
   return (
     <div className="relative mx-auto flex h-[min(520px,70vh)] w-full max-w-[420px] items-center justify-center lg:max-w-[480px]">
@@ -68,7 +70,6 @@ export default function AppLaunchHeroVisual() {
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
         >
-          {/* Handset shell */}
           <div
             className="relative rounded-[2.35rem] p-[3px] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.65)]"
             style={{
@@ -77,55 +78,17 @@ export default function AppLaunchHeroVisual() {
           >
             <div className="rounded-[2.25rem] bg-gradient-to-b from-slate-900 via-slate-950 to-black p-2 ring-1 ring-white/10">
               <div className="relative overflow-hidden rounded-[1.85rem] bg-[#070d18] aspect-[9/17.5] shadow-inner">
-                {/* Aurora bands */}
-                <motion.div
-                  className="pointer-events-none absolute -left-1/2 top-0 h-full w-[200%] opacity-70"
-                  style={{
-                    background: `linear-gradient(105deg, transparent 0%, ${PRIMARY}33 35%, ${PRIMARY_LIGHT}22 50%, transparent 75%)`,
-                  }}
-                  animate={{ x: ['-20%', '20%'] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', repeatType: 'mirror' }}
+                <Image
+                  src={SCREEN_IMG}
+                  alt="हिंदी दैनिक राशिफल — ऐप होम स्क्रीन"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 280px, 300px"
+                  priority
                 />
-                <motion.div
-                  className="pointer-events-none absolute inset-0 opacity-40"
-                  style={{
-                    background:
-                      'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(107,182,255,0.35), transparent 55%)',
-                  }}
-                  animate={{ opacity: [0.25, 0.45, 0.25] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
-
-                <div className="relative flex h-full flex-col items-center justify-center px-6 pt-10 pb-14">
-                  <motion.div
-                    initial={{ scale: 0.85, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.35, duration: 0.6 }}
-                  >
-                    <Image
-                      src="/logo.png"
-                      alt=""
-                      width={120}
-                      height={36}
-                      className="mx-auto h-11 w-auto object-contain drop-shadow-[0_8px_24px_rgba(74,144,226,0.45)]"
-                    />
-                  </motion.div>
-                  <motion.p
-                    className="mt-5 text-center text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-500"
-                    animate={{ opacity: [0.6, 1, 0.6] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    Launch
-                  </motion.p>
-                  <motion.div
-                    className="mt-8 h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                    animate={{ scaleX: [0.85, 1, 0.85], opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2.5, repeat: Infinity }}
-                  />
-                </div>
-
-                {/* Notch */}
-                <div className="absolute left-1/2 top-2 h-5 w-24 -translate-x-1/2 rounded-full bg-black/80 ring-1 ring-white/10" />
+                <div className="pointer-events-none absolute inset-0 rounded-[1.85rem] ring-1 ring-inset ring-white/10 shadow-[inset_0_0_40px_rgba(0,0,0,0.15)]" />
+                {/* Dynamic island / notch */}
+                <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black/85 ring-1 ring-white/10" />
               </div>
             </div>
           </div>

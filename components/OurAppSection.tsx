@@ -8,6 +8,8 @@ import { FaCheckCircle } from 'react-icons/fa';
 const PRIMARY = '#4A90E2';
 const PRIMARY_LIGHT = '#6BB6FF';
 
+const SCREEN_IMG = '/app-home-screen.png';
+
 const bullets = [
   'दैनिक हिंदी राशिफल — स्पष्ट और विश्वसनीय',
   'बारहों राशियों के लिए ताज़ा भविष्यवाणियाँ',
@@ -138,66 +140,34 @@ export default function OurAppSection() {
               >
                 <div className="overflow-hidden rounded-[2.65rem] bg-gradient-to-b from-slate-900 via-slate-950 to-black p-2 shadow-2xl ring-1 ring-black/40">
                   <div className="relative aspect-[9/17.8] overflow-hidden rounded-[2.15rem] bg-[#060b14]">
-                    {/* Scan / shine */}
-                    <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
+                    <Image
+                      src={SCREEN_IMG}
+                      alt="हिंदी दैनिक राशिफल — ऐप होम स्क्रीन"
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 640px) 300px, 320px"
+                    />
+                    <div className="pointer-events-none absolute inset-0 rounded-[2.15rem] ring-1 ring-inset ring-white/10 shadow-[inset_0_0_50px_rgba(0,0,0,0.12)]" />
+                    {/* Light shine pass — subtle, keeps premium feel without hiding UI */}
+                    <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden rounded-[2.15rem] opacity-40">
                       <motion.div
-                        className="absolute inset-y-0 w-[42%]"
+                        className="absolute inset-y-0 w-[38%]"
                         style={{
                           background:
-                            'linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.14) 50%, transparent 62%)',
+                            'linear-gradient(115deg, transparent 36%, rgba(255,255,255,0.12) 50%, transparent 64%)',
                         }}
-                        initial={{ x: '-35%' }}
-                        animate={{ x: ['-35%', '240%'] }}
+                        initial={{ x: '-40%' }}
+                        animate={{ x: ['-40%', '220%'] }}
                         transition={{
-                          duration: 3.5,
+                          duration: 4,
                           repeat: Infinity,
-                          repeatDelay: 4,
+                          repeatDelay: 5,
                           ease: 'easeInOut',
                         }}
                       />
                     </div>
 
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_0%,rgba(107,182,255,0.25),transparent_58%)]" />
-
-                    <div className="relative flex h-full flex-col px-5 pt-12 pb-16">
-                      <Image
-                        src="/logo.png"
-                        alt="Daily Hindi Rashifall"
-                        width={140}
-                        height={42}
-                        className="mx-auto h-10 w-auto object-contain opacity-95"
-                      />
-                      <motion.p
-                        className="mt-6 text-center font-semibold leading-snug text-white"
-                        animate={{ opacity: [0.85, 1, 0.85] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      >
-                        <span className="block text-lg md:text-xl">आज का राशिफल</span>
-                        <span className="mt-1 block text-sm font-normal text-slate-400">
-                          हिंदी में · अपडेटेड
-                        </span>
-                      </motion.p>
-
-                      <div className="mt-auto space-y-2 rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm">
-                        {[0, 1, 2].map((i) => (
-                          <motion.div
-                            key={i}
-                            className="h-2.5 rounded-md bg-white/15"
-                            style={{ width: `${100 - i * 18}%` }}
-                            initial={false}
-                            animate={{ opacity: [0.4, 1, 0.4] }}
-                            transition={{
-                              duration: 2.2,
-                              repeat: Infinity,
-                              delay: i * 0.35,
-                              ease: 'easeInOut',
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="absolute left-1/2 top-3 h-6 w-[5.5rem] -translate-x-1/2 rounded-full bg-black shadow-inner ring-1 ring-white/10" />
+                    <div className="absolute left-1/2 top-3 z-10 h-6 w-[5.5rem] -translate-x-1/2 rounded-full bg-black/90 shadow-inner ring-1 ring-white/10" />
                   </div>
                 </div>
               </motion.div>
