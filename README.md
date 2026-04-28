@@ -1,24 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RashiNow - Vedic Astrology Admin System
+
+A beautiful Next.js application for managing and displaying 12 Rashis (Zodiac Signs) with Vedic Astrology predictions.
+
+## Features
+
+- 🎨 Beautiful, modern UI with animations
+- ☁️ Animated cloud background effects
+- 🎠 Sliding banner carousel
+- 📱 Fully responsive design
+- 🔮 Rashi detail pages with full information
+- 🎯 MongoDB integration for data management
+- ✨ Smooth animations using Framer Motion
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 20+ installed
+- MongoDB cluster connection string
+
+### Installation
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create a `.env.local` file in the root directory:
+```env
+MONGODB_URI=your_mongodb_connection_string_here
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+- `/app` - Next.js app directory with pages and API routes
+- `/components` - Reusable React components
+- `/lib` - Utility functions (MongoDB connection)
+- `/models` - Mongoose models
+- `/types` - TypeScript type definitions
+- `/public` - Static assets
+
+## API Endpoints
+
+- `GET /api/rashis` - Get all rashis
+- `POST /api/rashis` - Create a new rashi
+- `GET /api/rashis/[id]` - Get a single rashi
+- `PUT /api/rashis/[id]` - Update a rashi
+- `DELETE /api/rashis/[id]` - Delete a rashi
+
+## Rashi Model
+
+Each Rashi includes:
+- Name (English and Nepali)
+- Description
+- Favorite Color
+- Favorite Number
+- Icon (emoji or icon name)
+- 7 Days Description (optional)
+- 1 Month Description (optional)
 
 ## Learn More
 

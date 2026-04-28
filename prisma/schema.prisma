@@ -1,0 +1,56 @@
+// Prisma + MongoDB Atlas — https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// Zodiac label + optional display fields for the public site.
+model Rashi {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  nameNepali       String?
+  /// Public folder image filename, e.g. aries.jpg
+  icon             String?
+  shortDescription String?
+  description      String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  detail RashiDetail?
+}
+
+/// Rich content per rashi: daily, weekly, monthly, remedy, lucky color/number.
+model RashiDetail {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  rashiId         String   @unique @db.ObjectId
+  rashi           Rashi    @relation(fields: [rashiId], references: [id], onDelete: Cascade)
+  /// दैनिक राशिफल
+  dailyRashifal   String
+  /// Comma-separated colours or hex codes, e.g. "#FF0000, Navy, Gold"
+  favoriteColor   String
+  /// Multiple numbers as text, e.g. "5, 10, 7"
+  favoriteNumber  String
+  /// उपाय
+  upay            String
+  /// Saptahik (weekly) राशिफल
+  weeklyRashifal  String
+  /// साप्ताहिक प्रेम (weekly love / romance section), rich HTML
+  saptahikPrem    String?
+  /// Masik (monthly) राशिफल
+  monthlyRashifal String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
