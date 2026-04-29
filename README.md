@@ -60,9 +60,21 @@ Open [http://localhost:3000](http://localhost:3000).
 
 `node_modules/`, `.next/`, and `.env*` (except `.env.example`) are listed in `.gitignore` — never commit secrets.
 
-## Deploy
+## Deploy (Vercel)
 
-Use [Vercel](https://vercel.com) or any Node host; set `DATABASE_URL` and `JWT_SECRET` in the host’s environment.
+1. **Push this repo to GitHub** — the Next.js app must live at the **repository root** (same folder as `package.json`). If Vercel says the project is empty, you usually imported the wrong repo/branch or the branch has no commits with `package.json`.
+
+2. **Import on Vercel** → Add New Project → Import your Git repo → Framework Preset **Next.js**, Root Directory **`.`** (leave default).
+
+3. **Environment variables** (Project → Settings → Environment Variables), for Production / Preview / Development as needed:
+   - `DATABASE_URL` — MongoDB Atlas connection string (same as local `.env`).
+   - `JWT_SECRET` — long random string (do not use the example from `.env.example` in production).
+
+4. **Redeploy** after saving env vars. The build runs `prisma generate` automatically (`postinstall` + `build` script) so Prisma Client exists on Vercel.
+
+5. If the **site loads but looks broken**, open **Functions** / build logs; missing `DATABASE_URL` often causes API routes to fail at runtime.
+
+Use any other Node host the same way: set env vars and run `npm install` then `npm run build` then `npm start`.
 
 ## Learn More
 
